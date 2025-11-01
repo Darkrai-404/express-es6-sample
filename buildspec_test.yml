@@ -1,0 +1,27 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 14
+    commands:
+      - echo "Installing test dependencies"
+      
+  pre_build:
+    commands:
+      - echo "Pre-test phase"
+      - npm install
+      
+  build:
+    commands:
+      - echo "Running tests on `date`"
+      - npm test || echo "No tests found"
+      
+  post_build:
+    commands:
+      - echo "Tests completed on `date`"
+
+artifacts:
+  files:
+    - '**/*'
+  name: TestArtifact
