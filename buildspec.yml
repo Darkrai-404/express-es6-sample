@@ -1,0 +1,22 @@
+version: 0.2
+env:
+  variables:
+    NODE_ENV: production
+phases:
+  install:
+    commands:
+      - echo "Node version:" && node -v
+      - echo "Using npm ci if lockfile exists, else npm install"
+      - |
+        if [ -f package-lock.json ]; then
+          npm ci
+        else
+          npm install
+        fi
+  build:
+    commands:
+      - echo "No build step required for Express sample"
+artifacts:
+  files:
+    - '**/*'
+  discard-paths: no
